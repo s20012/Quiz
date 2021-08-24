@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Quiz</string>
+    <string name="next">NEXT</string>
+    <string name="button">Button</string>
+    <string name="button0">Button</string>
+    <string name="button1">Button</string>
+    <string name="button2">Button</string>
+    <string name="question">Question</string>
+    <string name="_1">1問目</string>
+    <string name="game_clear">全問正解！Game Clear！</string>
 </resources>
