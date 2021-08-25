@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     //カウント変数を用意
     private var i = 0
 
+    //正解数変数を用意
+    var s = 0
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,18 +54,18 @@ class MainActivity : AppCompatActivity() {
         }
         //ここまで
 
-        //問題分文データ
+        //問題文データ
         val titleData: ArrayList<String> = arrayListOf(
-            data[0],
-            data[7],
-            data[14],
-            data[21],
-            data[28],
-            data[35],
-            data[42],
-            data[49],
-            data[56],
-            data[63]
+            data[0],  //１問目
+            data[7],  //２問目
+            data[14], //３問目
+            data[21], //４問目
+            data[28], //５問目
+            data[35], //６問目
+            data[42], //７問目
+            data[49], //８問目
+            data[56], //９問目
+            data[63]  //１０問目
         )
 
         //選択肢データ
@@ -144,7 +147,11 @@ class MainActivity : AppCompatActivity() {
             val numNext =list.shuffled()
 
             //i問目のタイトルと問題を表示
-            tvCount.text ="あと" + (10 - i) + "問"
+            if(i != 9) {
+                tvCount.text = "あと" + (9 - i) + "問"
+            } else {
+                tvCount.text = "最後の問題"
+            }
             tvQuestion.text = titleData[i]
             btn0.text = choicesData[i][numNext[0]]
             btn1.text = choicesData[i][numNext[1]]
@@ -161,7 +168,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //９）正解の関数
-    private fun correctAns(){
+    fun correctAns(){
         val btn0:Button = findViewById(R.id.btn0)
         val btn1:Button = findViewById(R.id.btn1)
         val btn2:Button = findViewById(R.id.btn2)
@@ -170,10 +177,13 @@ class MainActivity : AppCompatActivity() {
 
         //12)全問正解で結果画面へ
         if(i == 9){
+            ++s
             val intent = Intent(this,ResultActivity::class.java)
+            intent.putExtra("ANSWER", s)
             startActivity(intent)
             finish()
         }else{
+            ++s
             //8)正解アラートダイアログ
             AlertDialog.Builder(this)
                 .setTitle("正解！")
@@ -191,22 +201,31 @@ class MainActivity : AppCompatActivity() {
 
     //９）不正解の関数
     @SuppressLint("SetTextI18n")
-    private fun incorrectAns(){
-        val tvQuestion :TextView =findViewById(R.id.tvQuestion)
-        val btn0:Button = findViewById(R.id.btn0)
-        val btn1:Button = findViewById(R.id.btn1)
-        val btn2:Button = findViewById(R.id.btn2)
-        val btn3:Button = findViewById(R.id.btn3)
-        val btnNext:Button=findViewById(R.id.btnNext)
+    fun incorrectAns() {
+        val btn0: Button = findViewById(R.id.btn0)
+        val btn1: Button = findViewById(R.id.btn1)
+        val btn2: Button = findViewById(R.id.btn2)
+        val btn3: Button = findViewById(R.id.btn3)
+        val btnNext: Button = findViewById(R.id.btnNext)
 
-        //７）不正解+ボタンの無効化
-        tvQuestion.text ="不正解!!Game Over"
-        btn0.isEnabled =false
-        btn1.isEnabled =false
-        btn2.isEnabled =false
-        btn3.isEnabled =false
-        btnNext.isEnabled =false
+        //12)全問正解で結果画面へ
+        if (i == 9) {
+            val intent = Intent(this, ResultActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            //8)正解アラートダイアログ
+            AlertDialog.Builder(this)
+                .setTitle("不正解！")
+                .setPositiveButton("OK", null)
+                .show()
 
+            btn0.isEnabled = false
+            btn1.isEnabled = false
+            btn2.isEnabled = false
+            btn3.isEnabled = false
+            btnNext.isEnabled = true
+
+        }
     }
-
 }
