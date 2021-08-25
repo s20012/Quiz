@@ -10,10 +10,29 @@ class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
+
+        //正解数取得
         val answer = intent.getIntExtra("ANSWER",0)
-        val yes: TextView = findViewById(R.id.textView)
         val id = answer.toString()
 
-        yes.text = "１０問中..." + id + "問正解！"
+        //viewの定義
+        val yes: TextView = findViewById(R.id.textView)
+        val se : TextView = findViewById(R.id.selfText)
+
+        yes.text = "$id / 10"
+
+        //正解数によってセリフを用意
+        if(answer == 10) {
+            se.text = "(｀・ω・´)"
+        } else if(answer >= 7)  {
+            se.text = "(・∀・)"
+        } else if(answer >= 4) {
+            se.text = "(；ー_ー)ノ"
+        } else {
+            se.text = "(´・ω・｀)"
+        }
+
+
+
     }
 }
