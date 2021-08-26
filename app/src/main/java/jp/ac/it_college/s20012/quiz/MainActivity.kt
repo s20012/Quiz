@@ -7,17 +7,20 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val title: Button = findViewById(R.id.button)
+        //viewの設定
+        val title: Button = findViewById(R.id.start)
 
         //ボタンを押すとクイズが始まる
         title.setOnClickListener {
-            val intent = Intent(this, Question::class.java)
+            val intent = Intent(this,YouActivity::class.java)
             startActivity(intent)
         }
-
     }
+
+
 }

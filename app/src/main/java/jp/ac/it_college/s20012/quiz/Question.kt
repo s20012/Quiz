@@ -53,30 +53,30 @@ class Question : AppCompatActivity() {
 
         //問題文データ
         val titleData: ArrayList<String> = arrayListOf(
-            data[0],  //１問目
-            data[7],  //２問目
-            data[14], //３問目
-            data[21], //４問目
-            data[28], //５問目
-            data[35], //６問目
-            data[42], //７問目
-            data[49], //８問目
-            data[56], //９問目
-            data[63]  //１０問目
+            data[7],  //１問目
+            data[14],  //２問目
+            data[21], //３問目
+            data[28], //４問目
+            data[35], //５問目
+            data[42], //６問目
+            data[49], //７問目
+            data[56], //８問目
+            data[63], //９問目
+            data[70]  //１０問目
         )
 
         //選択肢データ
         val choicesData = arrayOf(
-            arrayOf(data[0 + 2], data[0 + 3], data[0 + 4], data[0 + 5]),     //１問目
-            arrayOf(data[7 + 2], data[7 + 3], data[7 + 4], data[7 + 5]),     //２問目
-            arrayOf(data[14 + 2], data[14 + 3], data[14 + 4], data[14 + 5]), //３問目
-            arrayOf(data[21 + 2], data[21 + 3], data[21 + 4], data[21 + 5]), //４問目
-            arrayOf(data[28 + 2], data[28 + 3], data[28 + 4], data[28 + 5]), //５問目
-            arrayOf(data[35 + 2], data[35 + 3], data[35 + 4], data[35 + 5]), //６問目
-            arrayOf(data[42 + 2], data[42 + 3], data[42 + 4], data[42 + 5]), //７問目
-            arrayOf(data[49 + 2], data[49 + 3], data[49 + 4], data[49 + 5]), //８問目
-            arrayOf(data[56 + 2], data[56 + 3], data[56 + 4], data[56 + 5]), //９問目
-            arrayOf(data[63 + 2], data[63 + 3], data[63 + 4], data[63 + 5])  //１０問目
+            arrayOf(data[7 + 2], data[7 + 3], data[7 + 4], data[7 + 5]),     //1問目
+            arrayOf(data[14 + 2], data[14 + 3], data[14 + 4], data[14 + 5]), //2問目
+            arrayOf(data[21 + 2], data[21 + 3], data[21 + 4], data[21 + 5]), //3問目
+            arrayOf(data[28 + 2], data[28 + 3], data[28 + 4], data[28 + 5]), //4問目
+            arrayOf(data[35 + 2], data[35 + 3], data[35 + 4], data[35 + 5]), //5問目
+            arrayOf(data[42 + 2], data[42 + 3], data[42 + 4], data[42 + 5]), //6問目
+            arrayOf(data[49 + 2], data[49 + 3], data[49 + 4], data[49 + 5]), //7問目
+            arrayOf(data[56 + 2], data[56 + 3], data[56 + 4], data[56 + 5]), //8問目
+            arrayOf(data[63 + 2], data[63 + 3], data[63 + 4], data[63 + 5]), //9問目
+            arrayOf(data[70 + 2], data[70 + 3], data[70 + 4], data[70 + 5]), //10問目
         )
 
         //カウント数と、最初の問題表示
@@ -149,30 +149,30 @@ class Question : AppCompatActivity() {
         val btn3: Button = findViewById(R.id.btn3)
 
         val titleData: ArrayList<String> = arrayListOf(
-            data[0],  //１問目
-            data[7],  //２問目
-            data[14], //３問目
-            data[21], //４問目
-            data[28], //５問目
-            data[35], //６問目
-            data[42], //７問目
-            data[49], //８問目
-            data[56], //９問目
-            data[63]  //１０問目
+            data[7],  //１問目
+            data[14],  //２問目
+            data[21], //３問目
+            data[28], //４問目
+            data[35], //５問目
+            data[42], //６問目
+            data[49], //７問目
+            data[56], //８問目
+            data[63], //９問目
+            data[70]  //１０問目
         )
 
         //選択肢データ
         val choicesData = arrayOf(
-            arrayOf(data[0 + 2], data[0 + 3], data[0 + 4], data[0 + 5]),     //１問目
-            arrayOf(data[7 + 2], data[7 + 3], data[7 + 4], data[7 + 5]),     //２問目
-            arrayOf(data[14 + 2], data[14 + 3], data[14 + 4], data[14 + 5]), //３問目
-            arrayOf(data[21 + 2], data[21 + 3], data[21 + 4], data[21 + 5]), //４問目
-            arrayOf(data[28 + 2], data[28 + 3], data[28 + 4], data[28 + 5]), //５問目
-            arrayOf(data[35 + 2], data[35 + 3], data[35 + 4], data[35 + 5]), //６問目
-            arrayOf(data[42 + 2], data[42 + 3], data[42 + 4], data[42 + 5]), //７問目
-            arrayOf(data[49 + 2], data[49 + 3], data[49 + 4], data[49 + 5]), //８問目
-            arrayOf(data[56 + 2], data[56 + 3], data[56 + 4], data[56 + 5]), //９問目
-            arrayOf(data[63 + 2], data[63 + 3], data[63 + 4], data[63 + 5])  //１０問目
+            arrayOf(data[7 + 2], data[7 + 3], data[7 + 4], data[7 + 5]),     //1問目
+            arrayOf(data[14 + 2], data[14 + 3], data[14 + 4], data[14 + 5]), //2問目
+            arrayOf(data[21 + 2], data[21 + 3], data[21 + 4], data[21 + 5]), //3問目
+            arrayOf(data[28 + 2], data[28 + 3], data[28 + 4], data[28 + 5]), //4問目
+            arrayOf(data[35 + 2], data[35 + 3], data[35 + 4], data[35 + 5]), //5問目
+            arrayOf(data[42 + 2], data[42 + 3], data[42 + 4], data[42 + 5]), //6問目
+            arrayOf(data[49 + 2], data[49 + 3], data[49 + 4], data[49 + 5]), //7問目
+            arrayOf(data[56 + 2], data[56 + 3], data[56 + 4], data[56 + 5]), //8問目
+            arrayOf(data[63 + 2], data[63 + 3], data[63 + 4], data[63 + 5]), //9問目
+            arrayOf(data[70 + 2], data[70 + 3], data[70 + 4], data[70 + 5]), //10問目
         )
 
         val list = listOf(0, 1, 2, 3)
@@ -201,16 +201,22 @@ class Question : AppCompatActivity() {
         //12)全問正解で結果画面へ
         if(i == 9){
             ++s
-            val intent = Intent(this,ResultActivity::class.java)
-            intent.putExtra("ANSWER", s)
-            startActivity(intent)
-            finish()
+            AlertDialog.Builder(this)
+                .setTitle("正解！")
+                .setPositiveButton("次へ") { _, _ ->
+                    val intent = Intent(this,ResultActivity::class.java)
+                    intent.putExtra("ANSWER", s)
+                    startActivity(intent)
+                    finish()
+                }
+                .show()
+
         }else{
             ++s
             //8)正解アラートダイアログ
             AlertDialog.Builder(this)
                 .setTitle("正解！")
-                .setPositiveButton("OK") { _, _ ->
+                .setPositiveButton("次へ") { _, _ ->
                     next()
                 }
                 .show()
@@ -225,15 +231,21 @@ class Question : AppCompatActivity() {
 
         //12)全問正解で結果画面へ
         if (i == 9) {
-            val intent = Intent(this, ResultActivity::class.java)
-            intent.putExtra("ANSWER", s)
-            startActivity(intent)
-            finish()
+            AlertDialog.Builder(this)
+                .setTitle("不正解...")
+                .setPositiveButton("次へ") { _, _ ->
+                    val intent = Intent(this, ResultActivity::class.java)
+                    intent.putExtra("ANSWER", s)
+                    startActivity(intent)
+                    finish()
+                }
+                .show()
+
         } else {
             //8)正解アラートダイアログ
             AlertDialog.Builder(this)
                 .setTitle("不正解...")
-                .setPositiveButton("OK") { _, _ ->
+                .setPositiveButton("次へ") { _, _ ->
                     next()
                 }
                 .show()

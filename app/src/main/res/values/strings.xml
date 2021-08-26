@@ -9,4 +9,10 @@
     <string name="_1">1問目</string>
     <string name="game_clear">全問正解！Game Clear！</string>
     <string name="emoji">やるやん</string>
+    <string name="home">リザルト</string>
+    <string name="back">タイトルへ</string>
+    <string name="go">Button</string>
+    <string name="ha">始める</string>
+    <string name="ni">にじさんじ</string>
+    <string name="ku">クイズ</string>
 </resources>

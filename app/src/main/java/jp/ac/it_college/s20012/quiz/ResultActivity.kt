@@ -1,8 +1,10 @@
 package jp.ac.it_college.s20012.quiz
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 
 class ResultActivity : AppCompatActivity() {
@@ -18,21 +20,26 @@ class ResultActivity : AppCompatActivity() {
         //viewの定義
         val yes: TextView = findViewById(R.id.textView)
         val se : TextView = findViewById(R.id.selfText)
+        val back : Button = findViewById(R.id.homeButton)
 
         yes.text = "$id / 10"
 
         //正解数によってセリフを用意
         if(answer == 10) {
-            se.text = "(｀・ω・´)"
+            se.text = "パーフェクト！！！"
         } else if(answer >= 7)  {
-            se.text = "(・∀・)"
+            se.text = "あともう少し！"
         } else if(answer >= 4) {
-            se.text = "(；ー_ー)ノ"
+            se.text = "まぁまぁかな..."
         } else {
             se.text = "(´・ω・｀)"
         }
 
-
+        //最初の画面へ戻る
+        back.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
