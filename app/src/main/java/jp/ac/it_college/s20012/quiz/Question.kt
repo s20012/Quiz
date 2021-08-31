@@ -4,7 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.opencsv.CSVIterator
@@ -23,6 +27,9 @@ class Question : AppCompatActivity() {
     //正解数変数を用意
     private var s = 0
 
+    val handler = Handler(Looper.getMainLooper())
+    var timeValue = 0
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +38,8 @@ class Question : AppCompatActivity() {
         //viewの定義
         val tvCount: TextView = findViewById(R.id.tvCount)
         val tvQuestion: TextView = findViewById(R.id.tvQuestion)
+        val countDown: ProgressBar = findViewById(R.id.progress)
+        val timer: TextView = findViewById(R.id.timerText)
         val btn0: Button = findViewById(R.id.btn0)
         val btn1: Button = findViewById(R.id.btn1)
         val btn2: Button = findViewById(R.id.btn2)
@@ -83,9 +92,27 @@ class Question : AppCompatActivity() {
         tvCount.text = "第1問"
         tvQuestion.text = titleData[0]
 
+        countDown.max = 10
+        val ti = MyCountDownTimer(10000, 1000)
+
+        ti.start()
+
         //選択肢シャッフル
         val list = listOf(0, 1, 2, 3)
         val num = list.shuffled()
+        fun count() {
+            ti.isRunning = when (ti.isRunning) {
+                true -> {
+                    ti.cancel()
+                    false
+                }
+                false -> {
+                    ti.cancel()
+                    true
+                }
+            }
+            ti.start()
+        }
 
         //buttonに選択肢を表示
         btn0.text = choicesData[0][num[0]]
@@ -99,10 +126,12 @@ class Question : AppCompatActivity() {
             if(btn0.text == choicesData[i][0]){
                 //正解
                 correctAns()
+                count()
 
             }else{
                 //不正解
                 incorrectAns()
+                count()
             }
         }
 
@@ -111,9 +140,11 @@ class Question : AppCompatActivity() {
             if(btn1.text == choicesData[i][0]){
                 //正解
                 correctAns()
+                count()
             }else{
                 //不正解
                 incorrectAns()
+                count()
             }
         }
 
@@ -121,9 +152,11 @@ class Question : AppCompatActivity() {
             if(btn2.text == choicesData[i][0]){
                 //正解
                 correctAns()
+                count()
             }else{
                 //不正解
                 incorrectAns()
+                count()
             }
         }
 
@@ -131,12 +164,94 @@ class Question : AppCompatActivity() {
             if(btn3.text == choicesData[i][0]){
                 //正解
                 correctAns()
+                count()
             }else{
                 //不正解
                 incorrectAns()
+                count()
             }
         }
 
+        val runnable = object : Runnable {
+
+            override fun run() {
+                timeValue++                      // 秒カウンタ+1
+                timeToText(timeValue)?.let {        // timeToText()で表示データを作り
+                    timer.text = it            // timeText.textへ代入(表示)
+                }
+                handler.postDelayed(this, 1000)  // 1000ｍｓ後に自分にpost
+            }
+
+        }
+
+        runnable.run()
+        val time = timeToText().toString()
+        val intent = Intent(this,ResultActivity::class.java)
+                     intent.putExtra("TIME", time)
+
+    }
+    //ここから
+    inner class MyCountDownTimer(
+        millisInFuture: Long,
+        countDownInterval: Long
+    ) : CountDownTimer(millisInFuture, countDownInterval) {
+        var isRunning = true
+
+        private val countDown: ProgressBar = findViewById(R.id.progress)
+
+        @SuppressLint("SetTextI18n")
+        override fun onTick(millisUntilFinished: Long) {
+            val second = kotlin.math.ceil(millisUntilFinished / 1000.0).toInt()
+            countDown.progress = second
+
+        }
+
+        @SuppressLint("SetTextI18n")
+        override fun onFinish() {
+            countDown.progress = 0
+
+            if(i == 9){
+                AlertDialog.Builder(this@Question)
+                    .setTitle("時間切れ")
+                    .setPositiveButton("次へ") { _, _ ->
+                        val intent = Intent(this@Question,ResultActivity::class.java)
+                        intent.putExtra("ANSWER", s)
+                        startActivity(intent)
+                        finish()
+                    }
+
+
+            }else{
+                //8)正解アラートダイアログ
+                AlertDialog.Builder(this@Question)
+                    .setTitle("時間切れ")
+                    .setPositiveButton("次へ") { _, _ ->
+                        next()
+                        start()
+                    }
+                    .show()
+
+            }
+
+        }
+
+    }
+    //ここまで
+
+    private fun timeToText(time: Int = 0): String? {
+        return when {
+            time < 0 -> {
+                null    // 時刻が0未満の場合 null
+            }
+            time == 0 -> {
+                "00:00"
+            }
+            else -> {
+                val m = time % 3600 / 60
+                val s = time % 60
+                "%1$02d:%2$02d".format(m, s)  // 表示に整形
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -180,6 +295,7 @@ class Question : AppCompatActivity() {
         i++
         //もう1回シャッフル
         val numNext = list.shuffled()
+
 
         //i問目のタイトルと問題を表示
         tvCount.text = "第" + (i + 1) + "問"

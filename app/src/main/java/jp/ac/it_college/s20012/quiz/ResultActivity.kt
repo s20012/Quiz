@@ -15,14 +15,18 @@ class ResultActivity : AppCompatActivity() {
 
         //正解数取得
         val answer = intent.getIntExtra("ANSWER",0)
+        val time = intent.getStringExtra("TIME")
         val id = answer.toString()
 
         //viewの定義
         val yes: TextView = findViewById(R.id.textView)
         val se : TextView = findViewById(R.id.selfText)
         val back : Button = findViewById(R.id.homeButton)
+        val no : TextView = findViewById(R.id.okTime)
 
         yes.text = "$id / 10"
+
+        no.text = time
 
         //正解数によってセリフを用意
         if(answer == 10) {
@@ -34,6 +38,7 @@ class ResultActivity : AppCompatActivity() {
         } else {
             se.text = "(´・ω・｀)"
         }
+
 
         //最初の画面へ戻る
         back.setOnClickListener {

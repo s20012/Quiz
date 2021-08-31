@@ -5,18 +5,27 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.widget.TextView
 import androidx.core.view.ViewCompat
-import java.util.logging.Handler
+
+
 
 class YouActivity : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_you)
 
-        val ti = MyCountDownTimer(5000, 1000)
+        val timer: TextView = findViewById(R.id.youText)
 
-        ti.start()
+        timer.text = "Are you ready?"
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            val ti = MyCountDownTimer(3000, 1000)
+            ti.start()
+        }, 2500)
     }
 
     inner class MyCountDownTimer(
@@ -25,8 +34,6 @@ class YouActivity : AppCompatActivity() {
     ) : CountDownTimer(millisInFuture, countDownInterval) {
 
         private val timer: TextView = findViewById(R.id.youText)
-
-
 
         @SuppressLint("SetTextI18n")
         override fun onTick(millisUntilFinished: Long) {
@@ -45,8 +52,10 @@ class YouActivity : AppCompatActivity() {
         @SuppressLint("SetTextI18n")
         override fun onFinish() {
             timer.text = "GO!!!!"
-            android.os.Handler().postDelayed({ val intent = Intent(this@YouActivity,Question::class.java)
-                startActivity(intent)},1000)
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(this@YouActivity,Question::class.java)
+                startActivity(intent)
+            }, 700)
 
         }
     } }
